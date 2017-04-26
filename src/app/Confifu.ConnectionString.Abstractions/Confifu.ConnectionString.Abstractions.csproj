@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard1.1</TargetFramework>
+    <TargetFrameworks>netstandard1.1;net451</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Confifu.Abstractions" Version="2.0.0" />
-    <PackageReference Include="Confifu.Abstractions.DependencyInjection" Version="2.0.0" />
+    <PackageReference Include="Confifu.Abstractions" Version="2.1.2" />
+    <PackageReference Include="Confifu.Abstractions.DependencyInjection" Version="2.1.1" />
   </ItemGroup>
 
 </Project>
