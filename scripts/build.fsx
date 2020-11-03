@@ -1,19 +1,18 @@
-// include Fake lib
-#r @"..\packages\FAKE\tools\FakeLib.dll"
-//#r @"..\packages\Steinpilz.DevFlow.Fake\lib\net451\Steinpilz.DevFlow.Fake.dll"
-#load @"c:\data\work\github\fake-build\src\app\Steinpilz.DevFlow.Fake\lib.fs"
+#r "paket:
+framework: netstandard20
+nuget Steinpilz.DevFlow.Fake5 prerelease
+//"
 
+open Fake.Core
+open Steinpilz.DevFlow.Fake
 
-open Fake
-open Steinpilz.DevFlow.Fake 
-
-Lib.setup(fun p -> 
-    { p with 
-        PublishProjects = !!"src/app/**/*.csproj"
-        UseDotNetCliToPack = true
+let param = Lib.setup <| fun p -> 
+    { p with
+        PublishProjects = p.AppProjects
         NuGetFeed = 
             { p.NuGetFeed with 
-                ApiKey = environVarOrFail <| "NUGET_API_KEY" |> Some
+                ApiKey = Environment.environVarOrFail <| "NUGET_API_KEY" |> Some
             }
     }
-)
+
+Target.runOrDefault "Pack"
